@@ -342,3 +342,8 @@ let p = new Promise((resolve, reject) => {
 console.log(p);
 
 ```
+
+# axios 的使用
+
+- 需要开启 json-server ,作为一个后端数据的使用
+- 启动 json-server 在当前文件夹下输入如下命令：`json-server db.json`
