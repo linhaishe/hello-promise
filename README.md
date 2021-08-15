@@ -1,5 +1,7 @@
 # hello-promise
 
+分别是 原生 ajax，promise 和 axios 的笔记
+
 ## 异步编程
 
 - fs 文件操作
