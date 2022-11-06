@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Promise-封装 | 9 - 同步任务 then 返回结果</title>
     <script src="./promise.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        //实例化对象
-        let p = new Promise((resolve, reject) => {
-            resolve('OK');
-        });
-        //执行 then 方法
-        const res = p.then(value => {
-            //抛出异常
-            throw "FAIL";
-        }, reason=>{
-            console.warn(reason);
-        });
-        console.log(res);
+      //实例化对象
+      let p = new Promise((resolve, reject) => {
+        resolve("OK");
+      });
+      //执行 then 方法
+      const res = p.then(
+        (value) => {
+          //抛出异常
+          // throw "FAIL";
+          console.log(11, value); // 'ok'
+          // return 'hello-promise'
+          return new Promise((res, rej) => {
+            res("success");
+          });
+        },
+        (reason) => {
+          console.warn(reason);
+        }
+      );
+      console.log("res", res); // undefined fulfilled 是promise类型的!!!!!
+      // 原因是then是promise函数，返回的数据就是res的数据
+      // then方法的返回结果是由它指定的回调函数的返回结果决定的。
+      // (value) => {
+      //抛出异常
+      // throw "FAIL";
+      //console.log(11, value); // 'ok'
+      //}
+
+      // then里的这块就是它指定的回调函数，可以看出此为非promise数据，返回的就是成功的状态promise；
+      // 如果是promise数据，则会是promise返回的数据状态的promise
+      console.log("p", p); // "OK"
     </script>
-</body>
+  </body>
 </html>
