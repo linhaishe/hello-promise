@@ -8,9 +8,13 @@
   <body>
     <script>
       let p = new Promise((resolve, reject) => {
+        //异步写法,这样写会先指定回调,再改变状态
         setTimeout(() => {
           resolve("OK");
         }, 1000);
+
+        //这是同步写法,这样写会先改变状态,再指定回调
+        // resolve("OK");
       });
 
       p.then(
